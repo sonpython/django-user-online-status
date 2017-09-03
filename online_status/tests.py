@@ -8,7 +8,7 @@ from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import Client, RequestFactory
-from django.utils import simplejson
+import json
 from online_status.status import CACHE_PREFIX_USER, CACHE_USERS
 from online_status.utils import encode_json
 from time import sleep
@@ -94,7 +94,7 @@ class OnlineStatusTest(TestCase):
         response = self.client.get(reverse('online_users'))
         self.assertEqual(response.status_code, 200)
         online_users = cache.get(CACHE_USERS)         
-        self.assertEqual(response.content, simplejson.dumps(online_users, default=encode_json))
+        self.assertEqual(response.content, json.dumps(online_users, default=encode_json))
         
         
     def test_templatetags(self):
