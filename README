@@ -1,0 +1,10 @@
+This is a fork from https://bitbucket.org/zalew/django-online-status
+
+Because it was not updated from the py hosted from 2014, I have to fork it here to update it for my project. Free to use if it could help.
+
+========================
+django-online-status
+========================
+
+Online status for authenticated users (online, idle, offline) and list of current users online, all to display with templatetags. No database models, everything cached.
+Read more: http://bitbucket.org/zalew/django-online-status/wiki/Home
