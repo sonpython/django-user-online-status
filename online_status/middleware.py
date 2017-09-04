@@ -5,17 +5,16 @@ from status import OnlineStatus, CACHE_PREFIX_USER, CACHE_PREFIX_ANONYM_USER, ON
 
 class OnlineStatusMiddleware(object):
     """Cache OnlineStatus instance for an authenticated User"""
-    
+
     def process_request(self, request):
         if request.user.is_authenticated():
             onlinestatus = cache.get(CACHE_PREFIX_USER % request.user.pk)
         elif not ONLY_LOGGED_USERS:
             onlinestatus = cache.get(CACHE_PREFIX_ANONYM_USER % request.session.session_key)
-        else :
+        else:
             return
         if not onlinestatus:
             onlinestatus = OnlineStatus(request)
         refresh_user(request)
         refresh_users_list(request, updated=onlinestatus)
         return
-        
